@@ -21,8 +21,8 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  return number >= 0;
 }
 
 /**
@@ -38,8 +38,19 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  let maxNumber;
+  if (a > b && a > c) {
+    maxNumber = a;
+  } else if (b > a && b > c) {
+    maxNumber = b;
+  } else if (c > a && c > b) {
+    maxNumber = c;
+  } else if (a === b && b === c && a === c) {
+    maxNumber = a;
+  }
+
+  return maxNumber;
 }
 
 /**
@@ -82,8 +93,20 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  let isIsosceles = false;
+
+  if (a === 0 || b === 0 || c === 0) return isIsosceles;
+
+  if (a === b && a !== c && a + b > c) {
+    isIsosceles = true;
+  } else if (b === c && b !== a && c + b > a) {
+    isIsosceles = true;
+  } else if (a === c && a !== b && a + c > b) {
+    isIsosceles = true;
+  }
+
+  return isIsosceles;
 }
 
 /**
@@ -153,8 +176,12 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) return i;
+  }
+
+  return -1;
 }
 
 /**
@@ -172,8 +199,23 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  let isContain = false;
+  let rem = 0;
+  let number = num;
+
+  while (number !== 0) {
+    rem = number % 10;
+
+    if (rem === digit) {
+      isContain = true;
+      break;
+    } else {
+      number = Math.floor(number / 10);
+    }
+  }
+
+  return isContain;
 }
 
 /**
