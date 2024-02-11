@@ -142,8 +142,60 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let res = '';
+
+  for (let i = 0; i < numberStr.length; i += 1) {
+    switch (numberStr[i]) {
+      case '0':
+        res += 'zero';
+        break;
+      case '1':
+        res += 'one';
+        break;
+      case '2':
+        res += 'two';
+        break;
+      case '3':
+        res += 'three';
+        break;
+      case '4':
+        res += 'four';
+        break;
+      case '5':
+        res += 'five';
+        break;
+      case '6':
+        res += 'six';
+        break;
+      case '7':
+        res += 'seven';
+        break;
+      case '8':
+        res += 'eight';
+        break;
+      case '9':
+        res += 'nine';
+        break;
+      case '-':
+        res += 'minus';
+        break;
+      case ',':
+        res += 'point';
+        break;
+      case '.':
+        res += 'point';
+        break;
+      default:
+        break;
+    }
+
+    if (i !== numberStr.length - 1) {
+      res += ' ';
+    }
+  }
+
+  return res;
 }
 
 /**
@@ -158,8 +210,20 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let isHalfEqual = false;
+  let index = str.length;
+
+  for (let i = 0; i < Math.floor(str.length / 2); i += 1) {
+    if (str[i] === str[index - 1]) {
+      isHalfEqual = true;
+    } else {
+      isHalfEqual = false;
+    }
+    index -= 1;
+  }
+
+  return isHalfEqual;
 }
 
 /**
@@ -231,8 +295,29 @@ function isContainNumber(num, digit) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  let sumLeft = 0;
+  let sumRight = 0;
+  let res = -1;
+
+  for (let i = 0; i < arr.length; i += 1) {
+    sumLeft = 0;
+    sumRight = 0;
+    for (let j = 0; j < i; j += 1) {
+      sumLeft += arr[j];
+    }
+
+    for (let k = i + 1; k < arr.length; k += 1) {
+      sumRight += arr[k];
+    }
+
+    if (sumLeft === sumRight) {
+      res = i;
+      break;
+    }
+  }
+
+  return res;
 }
 
 /**
