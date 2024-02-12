@@ -71,8 +71,11 @@ function getMaxNumber(a, b, c) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  if (king.x - queen.x === 0 || king.y - queen.y === 0) return true;
+  if (Math.abs(king.x - queen.x) === Math.abs(king.y - queen.y)) return true;
+
+  return false;
 }
 
 /**
@@ -123,8 +126,26 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  let copyNum = num;
+  const romanNumerals = [
+    { value: 10, numeral: 'X' },
+    { value: 9, numeral: 'IX' },
+    { value: 5, numeral: 'V' },
+    { value: 4, numeral: 'IV' },
+    { value: 1, numeral: 'I' },
+  ];
+
+  let res = '';
+
+  for (let i = 0; i < romanNumerals.length; i += 1) {
+    while (copyNum >= romanNumerals[i].value) {
+      res += romanNumerals[i].numeral;
+      copyNum -= romanNumerals[i].value;
+    }
+  }
+
+  return res;
 }
 
 /**
@@ -341,8 +362,44 @@ function getBalanceIndex(arr) {
  *          [10, 9,  8,  7]
  *        ]
  */
-function getSpiralMatrix(/* size */) {
-  throw new Error('Not implemented');
+function getSpiralMatrix(size) {
+  const spiralMatrix = [];
+  let counter = 1;
+  let startCol = 0;
+  let endCol = size - 1;
+  let startRow = 0;
+  let endRow = size - 1;
+
+  for (let i = 0; i < size; i += 1) {
+    spiralMatrix[i] = [];
+  }
+
+  while (startCol <= endCol && startRow <= endRow) {
+    for (let i = startCol; i <= endCol; i += 1) {
+      spiralMatrix[startRow][i] = counter;
+      counter += 1;
+    }
+    startRow += 1;
+
+    for (let j = startRow; j <= endRow; j += 1) {
+      spiralMatrix[j][endCol] = counter;
+      counter += 1;
+    }
+    endCol -= 1;
+
+    for (let k = endCol; k >= startCol; k -= 1) {
+      spiralMatrix[endRow][k] = counter;
+      counter += 1;
+    }
+    endRow -= 1;
+
+    for (let h = endRow; h >= startRow; h -= 1) {
+      spiralMatrix[h][startCol] = counter;
+      counter += 1;
+    }
+    startCol += 1;
+  }
+  return spiralMatrix;
 }
 
 /**
@@ -378,8 +435,10 @@ function rotateMatrix(/* matrix */) {
  *  [2, 9, 5, 9]    => [2, 5, 9, 9]
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
-function sortByAsc(/* arr */) {
-  throw new Error('Not implemented');
+function sortByAsc(arr) {
+  return arr.sort(function sortArr(a, b) {
+    return a - b;
+  });
 }
 
 /**
@@ -399,8 +458,15 @@ function sortByAsc(/* arr */) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  let res = '';
+  for (let i = 0; i < iterations; i += 1) {
+    for (let j = 1; j < str.length; j += 2) {
+      res = str.concat(str[j]);
+    }
+  }
+
+  return res;
 }
 
 /**
