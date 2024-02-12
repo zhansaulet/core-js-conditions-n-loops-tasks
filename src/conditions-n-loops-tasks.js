@@ -436,9 +436,16 @@ function rotateMatrix(/* matrix */) {
  *  [-2, 9, 5, -3]  => [-3, -2, 5, 9]
  */
 function sortByAsc(arr) {
-  return arr.sort(function sortArr(a, b) {
-    return a - b;
-  });
+  const copyArr = arr;
+  for (let i = 0; i < arr.length; i += 1) {
+    for (let j = 0; j < arr.length - i - 1; j += 1) {
+      if (copyArr[j] > copyArr[j + 1]) {
+        const temp = copyArr[j];
+        copyArr[j] = copyArr[j + 1];
+        copyArr[j + 1] = temp;
+      }
+    }
+  }
 }
 
 /**
